@@ -46,7 +46,16 @@ public class AddressController {
 	
 	@GetMapping("/all")
 	ResponseEntity<Iterable<Address>> findAll (){
+		
 		Iterable<Address> ret = repository.findAll();
+		
+		return ResponseEntity.status(HttpStatus.OK).body(ret);
+	}
+	
+	@GetMapping("/find-city")
+	ResponseEntity<List<Address>> findAll (@RequestParam(required = true) String city){
+		
+		List<Address> ret = repository.findByCity(city);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(ret);
 	}
