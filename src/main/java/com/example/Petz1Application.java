@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.example.controller")
-@ComponentScan("com.example.services")
-@EntityScan("com.example.model")  
+//@ComponentScan("com.example.controller")
+//@ComponentScan("com.example.services")
+//@EntityScan("com.example.model")  
 @EnableJpaRepositories("com.example.repository")
 public class Petz1Application {
 
