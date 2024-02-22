@@ -1,28 +1,16 @@
 package com.example.controller;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
 import com.example.model.Address;
-import com.example.model.Result;
 import com.example.model.Results;
 import com.example.repository.AddressRepository;
 import com.example.services.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RequestMapping(value = "/address")
 @RestController()
@@ -49,6 +37,14 @@ public class AddressController {
 		
 		Iterable<Address> ret = repository.findAll();
 		
+		return ResponseEntity.status(HttpStatus.OK).body(ret);
+	}
+
+	@GetMapping("/find-by-zipcode")
+	ResponseEntity<Address> findByZipcode (@RequestParam(required = true) Long zipcode){
+
+		Address ret = repository.findByZipcode(zipcode);
+
 		return ResponseEntity.status(HttpStatus.OK).body(ret);
 	}
 	
